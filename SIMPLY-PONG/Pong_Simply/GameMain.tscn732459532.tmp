@@ -1,0 +1,206 @@
+[gd_scene load_steps=20 format=3 uid="uid://csods63kkwhgi"]
+
+[ext_resource type="Script" uid="uid://dva8mouv2org7" path="res://Pong_Simply/PLRPADDLE.gd" id="1_4mu26"]
+[ext_resource type="Texture2D" uid="uid://dimspc6t0m05j" path="res://assets/Bouncy Platform Long.png" id="1_qlr0b"]
+[ext_resource type="Script" uid="uid://cx18jr5w2j7w4" path="res://Pong_Simply/start_button.gd" id="3_da4je"]
+[ext_resource type="Script" uid="uid://ba5xncuctcfin" path="res://BALL.gd" id="3_g3aib"]
+[ext_resource type="Script" uid="uid://3ina65iywbul" path="res://Pong_Simply/OPPPADDLE.gd" id="3_ihpcj"]
+[ext_resource type="Texture2D" uid="uid://cvg1di0csxpef" path="res://assets/ballBlue_10.png" id="6_2wsgh"]
+[ext_resource type="Script" uid="uid://bgqkh7tyc2y2a" path="res://Pong_Simply/PLRGOAL.gd" id="7_ihpcj"]
+[ext_resource type="Script" uid="uid://ce54h0fdd0tw4" path="res://Pong_Simply/OPPGOAL.gd" id="8_2wsgh"]
+[ext_resource type="PackedScene" uid="uid://cbk360cvlav7c" path="res://control.tscn" id="9_2wsgh"]
+[ext_resource type="Script" uid="uid://cpk3jvn8ee20f" path="res://progress_bar.gd" id="10_gj443"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2wsgh"]
+radius = 30.0
+height = 206.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3aib"]
+radius = 30.0
+height = 206.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2wsgh"]
+friction = 0.0
+bounce = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_da4je"]
+radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0hs8"]
+radius = 36.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gxgl3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpcj"]
+size = Vector2(1200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0hs8"]
+size = Vector2(1200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dyep"]
+size = Vector2(125, 800)
+
+[node name="Arena" type="Node"]
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(200, 600)
+
+[node name="PlayerChar" type="CharacterBody2D" parent="Player" groups=["PlayerBar"]]
+script = ExtResource("1_4mu26")
+
+[node name="PlrSprite" type="Sprite2D" parent="Player/PlayerChar" groups=["PlayerBar"]]
+rotation = -1.57079
+scale = Vector2(0.651158, -0.94443)
+texture = ExtResource("1_qlr0b")
+
+[node name="PlrHTB" type="CollisionShape2D" parent="Player/PlayerChar" groups=["PlayerBar"]]
+shape = SubResource("CapsuleShape2D_2wsgh")
+
+[node name="Opponent" type="Node2D" parent="."]
+position = Vector2(1000, 600)
+script = ExtResource("3_ihpcj")
+
+[node name="OppChar" type="CharacterBody2D" parent="Opponent" groups=["OpponentBar"]]
+
+[node name="OppSprite" type="Sprite2D" parent="Opponent/OppChar" groups=["OpponentBar"]]
+rotation = -1.57079
+scale = Vector2(0.651158, -0.94443)
+texture = ExtResource("1_qlr0b")
+
+[node name="OppHTB" type="CollisionShape2D" parent="Opponent/OppChar" groups=["OpponentBar"]]
+shape = SubResource("CapsuleShape2D_g3aib")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(600, 600)
+physics_material_override = SubResource("PhysicsMaterial_2wsgh")
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("3_g3aib")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+position = Vector2(6.09159e-05, 0)
+scale = Vector2(0.483108, 0.483108)
+texture = ExtResource("6_2wsgh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_da4je")
+
+[node name="Area2D" type="Area2D" parent="Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
+shape = SubResource("CircleShape2D_q0hs8")
+
+[node name="Timer" type="Timer" parent="Ball"]
+wait_time = 3.0
+one_shot = true
+ignore_time_scale = true
+
+[node name="StartButton" type="Button" parent="."]
+top_level = true
+anchors_preset = -1
+anchor_top = 0.157
+anchor_right = 1.0
+anchor_bottom = 1.056
+offset_top = 43.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+text = "Click Screen to Start"
+script = ExtResource("3_da4je")
+
+[node name="Bounds" type="Node2D" parent="." groups=["BoundsGroup"]]
+position = Vector2(0, 200)
+
+[node name="Borders" type="StaticBody2D" parent="Bounds" groups=["BoundsGroup"]]
+physics_material_override = SubResource("PhysicsMaterial_gxgl3")
+
+[node name="UpperBound" type="CollisionShape2D" parent="Bounds/Borders" groups=["BoundsGroup"]]
+position = Vector2(600, 0)
+shape = SubResource("RectangleShape2D_ihpcj")
+
+[node name="LowerBound" type="CollisionShape2D" parent="Bounds/Borders" groups=["BoundsGroup"]]
+position = Vector2(600, 800)
+shape = SubResource("RectangleShape2D_q0hs8")
+
+[node name="Goals" type="StaticBody2D" parent="Bounds" groups=["GoalsGroup"]]
+
+[node name="PlayerGoal" type="Area2D" parent="Bounds/Goals" groups=["GoalsGroup"]]
+position = Vector2(-20, 400)
+script = ExtResource("7_ihpcj")
+
+[node name="PGArea" type="CollisionShape2D" parent="Bounds/Goals/PlayerGoal" groups=["BoundsGroup"]]
+shape = SubResource("RectangleShape2D_7dyep")
+debug_color = Color(0.195271, 0.628758, 0.372253, 0.42)
+
+[node name="OpponentGoal" type="Area2D" parent="Bounds/Goals" groups=["GoalsGroup"]]
+position = Vector2(1220, 400)
+script = ExtResource("8_2wsgh")
+
+[node name="OGArea" type="CollisionShape2D" parent="Bounds/Goals/OpponentGoal" groups=["BoundsGroup"]]
+shape = SubResource("RectangleShape2D_7dyep")
+debug_color = Color(0.790814, 0.388018, 0.487199, 0.42)
+
+[node name="Control" parent="." instance=ExtResource("9_2wsgh")]
+visible = false
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+
+[node name="PlrText2" type="TextEdit" parent="Control"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+text = "Player:
+"
+
+[node name="ColorRect" type="ColorRect" parent="Control/PlrText2"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+color = Color(0, 0.749, 1, 1)
+
+[node name="PlrProg" type="ProgressBar" parent="Control/PlrText2"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 900.0
+offset_bottom = 200.0
+show_percentage = false
+script = ExtResource("10_gj443")
+
+[node name="OppText2" type="TextEdit" parent="Control"]
+show_behind_parent = true
+layout_direction = 3
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+text = "Opponent:"
+
+[node name="ColorRect" type="ColorRect" parent="Control/OppText2"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+color = Color(0.698, 0.133, 0.133, 1)
+
+[node name="OppProg" type="ProgressBar" parent="Control/OppText2"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 900.0
+offset_bottom = 200.0
+show_percentage = false
+script = ExtResource("10_gj443")
+
+[connection signal="_opponentAlert" from="Ball" to="Opponent" method="_on_ball__opponent_alert"]
+[connection signal="_reset" from="Ball" to="Player" method="_on_ball__reset"]
+[connection signal="_reset" from="Ball" to="StartButton" method="_on_ball__reset"]
+[connection signal="timeout" from="Ball/Timer" to="Ball" method="_on_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="Player/PlayerChar" method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
+[connection signal="pressed" from="StartButton" to="Bounds/Goals" method="_on_start_button_pressed"]
+[connection signal="pointScored" from="Bounds/Goals/PlayerGoal" to="Ball" method="_on_player_goal_point_scored"]
+[connection signal="pointScored" from="Bounds/Goals/OpponentGoal" to="Ball" method="_on_opponent_goal_point_scored"]

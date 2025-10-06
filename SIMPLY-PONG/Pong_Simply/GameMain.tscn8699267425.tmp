@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://csods63kkwhgi"]
+
+[ext_resource type="Script" uid="uid://dlf6wivy5wg7u" path="res://Pong_Simply/game_main.gd" id="1_gxgl3"]
+[ext_resource type="Texture2D" uid="uid://dimspc6t0m05j" path="res://assets/Bouncy Platform Long.png" id="1_qlr0b"]
+[ext_resource type="PackedScene" uid="uid://cwa8n7mlh25eg" path="res://TestBall.tscn" id="2_da4je"]
+[ext_resource type="Script" uid="uid://dh6efq5yhpiyq" path="res://Pong_Simply/character_body_2d.gd" id="2_g3aib"]
+[ext_resource type="Script" uid="uid://kobn4ce74cjp" path="res://ball.gd" id="3_g3aib"]
+[ext_resource type="Script" uid="uid://cx18jr5w2j7w4" path="res://Pong_Simply/start_button.gd" id="5_7dyep"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3aib"]
+radius = 31.0
+height = 206.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dyep"]
+size = Vector2(1416.5, 127.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxgl3"]
+size = Vector2(258, 815)
+
+[node name="Arena" type="Node"]
+script = ExtResource("1_gxgl3")
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(200, 400)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player" groups=["PlayerBar"]]
+motion_mode = 1
+script = ExtResource("2_g3aib")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D" groups=["PlayerBar"]]
+rotation = 1.5708
+scale = Vector2(-0.651158, 0.94443)
+texture = ExtResource("1_qlr0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D" groups=["PlayerBar"]]
+shape = SubResource("CapsuleShape2D_g3aib")
+
+[node name="Opponent" type="Node2D" parent="."]
+position = Vector2(1000, 400)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Opponent" groups=["OpponentBar"]]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Opponent/CharacterBody2D" groups=["OpponentBar"]]
+rotation = 1.5708
+scale = Vector2(-0.651158, 0.94443)
+texture = ExtResource("1_qlr0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent/CharacterBody2D" groups=["OpponentBar"]]
+shape = SubResource("CapsuleShape2D_g3aib")
+
+[node name="Ball" parent="." instance=ExtResource("2_da4je")]
+position = Vector2(600, 400)
+gravity_scale = 0.0
+script = ExtResource("3_g3aib")
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+text = "Click Screen to Start"
+script = ExtResource("5_7dyep")
+
+[node name="Bounds" type="Node2D" parent="." groups=["BoundsGroup"]]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bounds"]
+
+[node name="UpperBound" type="CollisionShape2D" parent="Bounds/StaticBody2D"]
+position = Vector2(600, 0)
+shape = SubResource("RectangleShape2D_7dyep")
+
+[node name="LowerBound" type="CollisionShape2D" parent="Bounds/StaticBody2D"]
+position = Vector2(600, 800)
+shape = SubResource("RectangleShape2D_7dyep")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bounds"]
+
+[node name="PlayerGoal" type="CollisionShape2D" parent="Bounds/StaticBody2D2"]
+position = Vector2(-100, 400)
+shape = SubResource("RectangleShape2D_gxgl3")
+debug_color = Color(0.748177, 0.243249, 0.957266, 0.42)
+
+[node name="OpponentGoal" type="CollisionShape2D" parent="Bounds/StaticBody2D2"]
+position = Vector2(1300, 400)
+shape = SubResource("RectangleShape2D_gxgl3")
+debug_color = Color(0.748177, 0.243249, 0.957266, 0.42)
+
+[node name="TestBall" parent="." instance=ExtResource("2_da4je")]
+position = Vector2(242, 196)
+gravity_scale = 0.0
+linear_velocity = Vector2(400, 400)
+
+[connection signal="pressed" from="StartButton" to="Player/CharacterBody2D" method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="Ball" method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
