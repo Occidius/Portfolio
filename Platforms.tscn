@@ -1,0 +1,831 @@
+[gd_scene load_steps=38 format=3 uid="uid://cvkn3xlixumu8"]
+
+[ext_resource type="Script" uid="uid://drxhlj2vvvdeb" path="res://PCTEST.gd" id="1_qrh24"]
+[ext_resource type="Script" uid="uid://c7oqo28kmnmqv" path="res://grapple_mote.gd" id="1_t4tg0"]
+[ext_resource type="Script" uid="uid://d1pgho1udu1ib" path="res://cooldownTimers.gd" id="2_t4tg0"]
+[ext_resource type="Script" uid="uid://b8yc2y65xruer" path="res://path_follow_3d.gd" id="2_vst3b"]
+[ext_resource type="Texture2D" uid="uid://cxlsvktxsv1tg" path="res://sbs_-_isometric_grid_pack/Grids/1024x1024/Grid Style B - 1024x1024 - 128x64.png" id="2_w524x"]
+[ext_resource type="Texture2D" uid="uid://dokk4j8jc28gi" path="res://skyorig.png" id="4_hx1ui"]
+[ext_resource type="Script" uid="uid://m3c87hfehv3w" path="res://BLCKOSCREEN.gd" id="4_l4rji"]
+[ext_resource type="Texture2D" uid="uid://16o8a1l0voeu" path="res://sbs_-_isometric_grid_pack/Grids/256x256/Grid Style A - 256x256 - 128x64.png" id="5_r3r4k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w524x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glqnw"]
+albedo_texture = ExtResource("2_w524x")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_dvsxo"]
+material = SubResource("StandardMaterial3D_glqnw")
+size = Vector3(50, 2, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4rji"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_l4rji"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 60, 0, 60, 0, 0, 0, 0, 0, 0, 60, 0, -60, 0, 0, 0, 0, 0, 0, -60, 0, -60, 0, 0, 0, 0, 0, 0, -60, 0, 60),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrh24"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3r4k"]
+cull_mode = 1
+albedo_color = Color(0.109804, 1, 0.337255, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hx1ui"]
+material = SubResource("StandardMaterial3D_r3r4k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4rji"]
+cull_mode = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_t4tg0"]
+material = SubResource("StandardMaterial3D_l4rji")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t4tg0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dvsxo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf4t2"]
+
+[sub_resource type="Animation" id="Animation_m3ger"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/RESPAWNSCRN:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x8vfr"]
+_data = {
+&"RESET": SubResource("Animation_m3ger")
+}
+
+[sub_resource type="Animation" id="Animation_fpbl8"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/RESPAWNSCRN:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fi6g"]
+_data = {
+&"RESPAWNBLCKOUT": SubResource("Animation_fpbl8")
+}
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t4tg0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hx1ui"]
+
+[sub_resource type="Gradient" id="Gradient_w524x"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 0.981445, 0.981445, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l4rji"]
+gradient = SubResource("Gradient_w524x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vst3b"]
+albedo_color = Color(1, 0.372569, 0.503756, 1)
+albedo_texture = SubResource("GradientTexture1D_l4rji")
+
+[sub_resource type="SphereMesh" id="SphereMesh_glqnw"]
+material = SubResource("StandardMaterial3D_vst3b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w524x"]
+albedo_texture = ExtResource("5_r3r4k")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l4rji"]
+material = SubResource("StandardMaterial3D_w524x")
+size = Vector2(50, 50)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r3r4k"]
+panorama = ExtResource("4_hx1ui")
+
+[sub_resource type="Sky" id="Sky_w524x"]
+sky_material = SubResource("PanoramaSkyMaterial_r3r4k")
+
+[sub_resource type="Environment" id="Environment_glqnw"]
+background_mode = 2
+background_color = Color(0.653159, 0.642219, 0.652902, 1)
+sky = SubResource("Sky_w524x")
+ambient_light_source = 3
+ambient_light_color = Color(0.912289, 0.912289, 0.912289, 1)
+glow_enabled = true
+glow_intensity = 2.46
+glow_strength = 1.2
+glow_map_strength = 0.3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.753984, 0.753984, 0.753984, 1)
+volumetric_fog_emission = Color(0.122252, 0.122252, 0.122252, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vst3b"]
+
+[node name="PlatformAssets" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+
+[node name="CONCEPTMAP" type="Node3D" parent="GridMap"]
+
+[node name="DEBUGFLOOR5" type="Node3D" parent="GridMap/CONCEPTMAP"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR5"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR5/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR5/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR6" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR6"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR6/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR6/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR7" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 0, 75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR7"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR7/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR7/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR8" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 25, 75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR8"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR8/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR8/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR9" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 25, -75)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR9"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR9/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR9/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR10" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR10"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR10/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR10/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR11" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 75, 40)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR11"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR11/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR11/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR12" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 75, -40)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR12"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR12/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR12/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="DEBUGFLOOR13" type="Node3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR13"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR13/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/DEBUGFLOOR13/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="Path3D" type="Path3D" parent="GridMap/CONCEPTMAP"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+curve = SubResource("Curve3D_l4rji")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="GridMap/CONCEPTMAP/Path3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 60, 0, 60)
+use_model_front = true
+script = ExtResource("2_vst3b")
+
+[node name="DEBUGFLOOR14" type="Node3D" parent="GridMap/CONCEPTMAP/Path3D/PathFollow3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/CONCEPTMAP/Path3D/PathFollow3D/DEBUGFLOOR14"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridMap/CONCEPTMAP/Path3D/PathFollow3D/DEBUGFLOOR14/StaticBody3D"]
+mesh = SubResource("BoxMesh_dvsxo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridMap/CONCEPTMAP/Path3D/PathFollow3D/DEBUGFLOOR14/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="GrappleMote" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote"]
+
+[node name="GrappleMote2" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 25, -40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote2"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote2"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote2/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote2/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote2/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote2"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote2/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote2"]
+
+[node name="GrappleMote3" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 25, 40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote3"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote3"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote3/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote3/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote3/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote3"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote3/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote3"]
+
+[node name="GrappleMote4" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 25, 40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote4"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote4"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote4/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote4/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote4/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote4"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote4/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote4"]
+
+[node name="GrappleMote5" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 25, -40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote5"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote5"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote5/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote5/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote5/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote5"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote5/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote5"]
+
+[node name="GrappleMote6" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 75, 0)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote6"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote6"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote6/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote6/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote6/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote6"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote6/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote6"]
+
+[node name="GrappleMote7" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 95, 0)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote7"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote7"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote7/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote7/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote7/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote7"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote7/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote7"]
+
+[node name="GrappleMote8" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 95, 0)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote8"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote8"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote8/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote8/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote8/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote8"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote8/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote8"]
+
+[node name="GrappleMote9" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 130, 0)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote9"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote9"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote9/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote9/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote9/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote9"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote9/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote9"]
+
+[node name="GrappleMote10" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 120, 40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote10"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote10"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote10/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote10/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote10/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote10"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote10/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote10"]
+
+[node name="GrappleMote11" type="Node3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 120, -40)
+script = ExtResource("1_t4tg0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GridMap/GrappleMote11"]
+light_color = Color(0.337255, 0.611765, 0, 1)
+light_volumetric_fog_energy = 0.0
+shadow_bias = 2.01
+omni_range = 5.015
+omni_attenuation = 10.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridMap/GrappleMote11"]
+
+[node name="GTextures" type="CollisionShape3D" parent="GridMap/GrappleMote11/StaticBody3D"]
+shape = SubResource("BoxShape3D_qrh24")
+
+[node name="Cube" type="MeshInstance3D" parent="GridMap/GrappleMote11/StaticBody3D/GTextures"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx1ui")
+
+[node name="Sphere" type="MeshInstance3D" parent="GridMap/GrappleMote11/StaticBody3D/GTextures"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_t4tg0")
+
+[node name="Area3D" type="Area3D" parent="GridMap/GrappleMote11"]
+gravity_space_override = 3
+gravity_point = true
+linear_damp_space_override = 1
+linear_damp = 0.0
+angular_damp_space_override = 1
+angular_damp = 0.0
+
+[node name="StaticBody3D" type="CollisionShape3D" parent="GridMap/GrappleMote11/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("SphereShape3D_t4tg0")
+debug_color = Color(0, 0.647059, 0.231373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridMap/GrappleMote11"]
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82221, 0)
+
+[node name="PCBOD" type="CharacterBody3D" parent="Player"]
+script = ExtResource("1_qrh24")
+
+[node name="Camera3D" type="Camera3D" parent="Player/PCBOD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.610054, 0)
+v_offset = 2.0
+
+[node name="CharBody" type="CollisionShape3D" parent="Player/PCBOD"]
+shape = SubResource("CapsuleShape3D_dvsxo")
+
+[node name="CharArea" type="Area3D" parent="Player/PCBOD"]
+
+[node name="DetectionArea" type="CollisionShape3D" parent="Player/PCBOD/CharArea"]
+shape = SubResource("CapsuleShape3D_yf4t2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/PCBOD"]
+libraries = {
+&"": SubResource("AnimationLibrary_x8vfr"),
+&"PLAYER": SubResource("AnimationLibrary_0fi6g")
+}
+script = ExtResource("4_l4rji")
+
+[node name="RESPAWNSCRN" type="ColorRect" parent="Player/PCBOD/AnimationPlayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="JBCLD" type="Timer" parent="Player"]
+one_shot = true
+script = ExtResource("2_t4tg0")
+
+[node name="DASHCLD" type="Timer" parent="Player"]
+one_shot = true
+script = ExtResource("2_t4tg0")
+
+[node name="DASHENBLD" type="Timer" parent="Player/DASHCLD"]
+one_shot = true
+script = ExtResource("2_t4tg0")
+
+[node name="DEBUG BALL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.3975, 11.3228)
+visible = false
+
+[node name="RigidBody3D" type="RigidBody3D" parent="DEBUG BALL"]
+physics_material_override = SubResource("PhysicsMaterial_t4tg0")
+can_sleep = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG BALL/RigidBody3D"]
+shape = SubResource("SphereShape3D_hx1ui")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DEBUG BALL/RigidBody3D"]
+mesh = SubResource("SphereMesh_glqnw")
+
+[node name="DEBUGFLOOR" type="Node3D" parent="."]
+visible = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DEBUGFLOOR"]
+physics_material_override = SubResource("PhysicsMaterial_w524x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DEBUGFLOOR/StaticBody3D"]
+mesh = SubResource("PlaneMesh_l4rji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUGFLOOR/StaticBody3D"]
+shape = SubResource("BoxShape3D_l4rji")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_glqnw")
+
+[node name="DeathBorder" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+
+[node name="OOB" type="Area3D" parent="DeathBorder"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBorder/OOB"]
+shape = SubResource("WorldBoundaryShape3D_vst3b")
+
+[node name="RESPAWNDELAY" type="Timer" parent="DeathBorder"]
+
+[connection signal="motePos" from="GridMap/GrappleMote" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote2" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote2/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote2/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote3" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote3/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote3/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote4" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote4/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote4/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote5" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote5/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote5/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote6" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote6/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote6/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote7" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote7/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote7/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote8" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote8/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote8/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote9" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote9/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote9/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote10" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote10/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote10/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="motePos" from="GridMap/GrappleMote11" to="Player/PCBOD" method="_on_grapple_mote_mote_pos"]
+[connection signal="area_entered" from="GridMap/GrappleMote11/Area3D" to="Player/PCBOD" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="GridMap/GrappleMote11/Area3D" to="Player/PCBOD" method="_on_area_3d_area_exited"]
+[connection signal="dashCD" from="Player/PCBOD" to="Player/DASHCLD/DASHENBLD" method="_on_pcbod_dash_cd"]
+[connection signal="jumpBoostCD" from="Player/PCBOD" to="Player/JBCLD" method="_on_pcbod_jump_boost_cd"]
+[connection signal="timeout" from="Player/JBCLD" to="Player/PCBOD" method="_on_jbcld_timeout"]
+[connection signal="timeout" from="Player/DASHCLD" to="Player/PCBOD" method="_on_dashcld_timeout"]
+[connection signal="dashCLD" from="Player/DASHCLD/DASHENBLD" to="Player/DASHCLD" method="_on_dashenbld_dash_cld"]
+[connection signal="timeout" from="Player/DASHCLD/DASHENBLD" to="Player/PCBOD" method="_on_dashenbld_timeout"]
+[connection signal="area_entered" from="DeathBorder/OOB" to="Player/PCBOD" method="_on_oob_area_entered"]
+[connection signal="area_entered" from="DeathBorder/OOB" to="Player/PCBOD/AnimationPlayer" method="_on_oob_area_entered"]
