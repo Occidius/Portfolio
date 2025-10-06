@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwa8n7mlh25eg"]
+
+[ext_resource type="Texture2D" uid="uid://cvg1di0csxpef" path="res://assets/ballBlue_10.png" id="1_x8fbi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qlr0b"]
+resource_local_to_scene = true
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_da4je"]
+radius = 36.0
+
+[node name="Ball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_qlr0b")
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.09159e-05, 0)
+scale = Vector2(0.483108, 0.483108)
+texture = ExtResource("1_x8fbi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_da4je")

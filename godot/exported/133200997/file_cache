@@ -1,0 +1,17 @@
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/curve_texture.tres::ea629652a6ef36955d429034e4f1f613::1748993649::res://.godot/exported/133200997/export-4eb4b0de2cc38e2bccf34d50c4bb582f-curve_texture.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/distraction_free.tres::e2ec23639c22eb760d723271e3547407::1748993649::res://.godot/exported/133200997/export-35c61ff95a513f770d24c822429fd53e-distraction_free.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/h_size.tres::577ae4d4b8ae6052dbc33c994aa21ebf::1748993649::res://.godot/exported/133200997/export-1b68ebf1b46f6d3579d2c1d4e3ca4edf-h_size.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/mesh_texture.tres::075d5a6d9d8b273417cd99a071f62ebe::1748993649::res://.godot/exported/133200997/export-10367011087e870c62b8badf921c9e07-mesh_texture.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/rotate_left.tres::9b10659935be666280a3b191bb3ca09e::1748993649::res://.godot/exported/133200997/export-5df8cfe98dea9d048216b65e35a8b886-rotate_left.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/rotate_right.tres::1902805301c6330cf302da541c4a5db0::1748993649::res://.godot/exported/133200997/export-25abd5034fe41485033d4ffa66936043-rotate_right.res
+res://addons/Sprite_Painter/addons/sprite_painter/graphics/tool_scale.tres::d889f845dc2f66e42bef376c09bb304f::1748993649::res://.godot/exported/133200997/export-f7df1fa672e13bfb9532f13e73497b5b-tool_scale.res
+res://addons/Sprite_Painter/addons/sprite_painter/shaders/gradient.tres::bd632926d92573cf8a78729678e8192b::1748993649::res://.godot/exported/133200997/export-d356783cdbf95c89f0fd9e7c92edf75f-gradient.res
+res://addons/Sprite_Painter/addons/sprite_painter/shaders/line.tres::d1c946523b2857f8e407c206f1ee87d2::1748993649::res://.godot/exported/133200997/export-990ef5f25005a11fc83139c2280ea9e8-line.res
+res://addons/Sprite_Painter/addons/sprite_painter/shaders/shape.tres::82f4c9184e9cec5179e0f5aba7a36189::1748993649::res://.godot/exported/133200997/export-472b8c600d536f6a61f5deb1c753b48a-shape.res
+res://addons/Sprite_Painter/addons/sprite_painter/src/floating/color_picker.tscn::879cab92d7b09c68db163c4a43fca7c1::1748993649::res://.godot/exported/133200997/export-31f3905d48bc9089de6d15e79eead342-color_picker.scn
+res://addons/Sprite_Painter/addons/sprite_painter/src/floating/type_context_settings.tscn::32a1406d09f445f8d35bd8401bef0fc4::1748993649::res://.godot/exported/133200997/export-4f5f29bcdfacd1dcc40342403017b0de-type_context_settings.scn
+res://addons/Sprite_Painter/addons/sprite_painter/src/image_view/resize_rect.tscn::6436604d5a3756d9b290a4436c104331::1748993649::res://.godot/exported/133200997/export-d2d42c4f6d7788696f1ff528df631a8b-resize_rect.scn
+res://addons/Sprite_Painter/addons/sprite_painter/src/main.tscn::7254b1dbe8849283181d4f4b9733d8d3::1748993649::res://.godot/exported/133200997/export-2ada35bc5c32b1d299ee37de34653bd4-main.scn
+res://addons/Sprite_Painter/test/node_2d.tscn::815d0066fd826f53f615110a96557ea6::1748993649::res://.godot/exported/133200997/export-235c0d9a799dcc91e43e94746cbba51e-node_2d.scn
+res://Pong_Simply/GameMain.tscn::75eeb5caa44868cc74681ca3561c4180::1749357531::res://.godot/exported/133200997/export-efad0376368d898d392ed9d0e61cef82-GameMain.scn
+res://TestBall.tscn::def00bc9fc0c7f803018f7e25d7aae54::1749096797::res://.godot/exported/133200997/export-947f5cb77b6ee5d99640e1ac582fcdc8-TestBall.scn

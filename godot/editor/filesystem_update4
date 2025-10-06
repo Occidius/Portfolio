@@ -1,0 +1,9 @@
+res://Pong_Simply/GameMain.tscn
+res://Pong_Simply/BALLTIMER.gd
+res://Pong_Simply/GameMain.gdshader
+res://Pong_Simply/OPPPADDLE.gd
+res://Pong_Simply/game_main.gd
+res://BALL.gd
+res://Pong_Simply/PLRGOAL.gd
+res://Pong_Simply/PLRPADDLE.gd
+res://Pong_Simply/start_button.gd
